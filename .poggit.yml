@@ -9,4 +9,7 @@ projects:
       - src: VennDev/VFormOOPAPI/VFormOOPAPI
         version: ^1.0.0
         branch: "main"
+      - src: VennDev/LibVapmPMMP/LibVapmPMMP
+        version: ^1.8.8
+        branch: "main"
 ...
