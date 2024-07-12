@@ -1,0 +1,12 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/VennDev/TestVForm
+build-by-default: true
+branches:
+- main
+projects:
+  TestVForm:
+    path: ""
+    libs:
+      - src: VennDev/VFormOOPAPI/VFormOOPAPI
+        version: ^1.0.0
+        branch: "main"
+...
