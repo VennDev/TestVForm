@@ -32,7 +32,7 @@ final class PlaceForm extends Form
                 $players = Main::getInstance()->getServer()->getOnlinePlayers();
                 $playersName = [];
                 foreach ($players as $player) $playersName[] = $player->getName();
-                $this->setIndexContent(1, ["options" => $playersName]);
+                $this->setIndexContent(1, ["options" => $playersName]); // It is `Test DropDown`
             }
         );
     }
