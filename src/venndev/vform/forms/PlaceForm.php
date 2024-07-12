@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace venndev\vform\forms;
 
 use pocketmine\player\Player;
+use venndev\vform\Main;
 use venndev\vformoopapi\attributes\custom\VDropDown;
 use venndev\vformoopapi\attributes\custom\VInput;
 use venndev\vformoopapi\attributes\custom\VLabel;
@@ -25,7 +26,15 @@ final class PlaceForm extends Form
 
     public function __construct(Player $player)
     {
-        parent::__construct($player);
+        parent::__construct(
+            player: $player,
+            middleWare: function () {
+                $players = Main::getInstance()->getServer()->getOnlinePlayers();
+                $playersName = [];
+                foreach ($players as $player) $playersName[] = $player->getName();
+                $this->setIndexContent(1, ["options" => $playersName]);
+            }
+        );
     }
 
     #[VInput(
