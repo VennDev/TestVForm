@@ -32,7 +32,10 @@ final class PlaceForm extends Form
                 $players = Main::getInstance()->getServer()->getOnlinePlayers();
                 $playersName = [];
                 foreach ($players as $player) $playersName[] = $player->getName();
-                $this->setIndexContent(1, ["options" => $playersName]); // It is `Test DropDown`
+
+                // It is `Test DropDown` index
+                // If you have set 'label' index, you can use $this->setIndexContent('labelName', ["options" => $playersName]);
+                $this->setIndexContent(1, ["options" => $playersName]);
             }
         );
     }
@@ -48,7 +51,7 @@ final class PlaceForm extends Form
 
     #[VDropDown(
         text: "Test DropDown",
-        options: ["Option 1", "Option 2", "Option 3"],
+        options: [],
     )]
     public function dropDown(Player $player, mixed $data): void
     {
