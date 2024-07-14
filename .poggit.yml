@@ -7,7 +7,7 @@ projects:
     path: ""
     libs:
       - src: VennDev/VFormOOPAPI/VFormOOPAPI
-        version: ^1.0.4
+        version: ^1.0.7
         branch: "main"
       - src: VennDev/LibVapmPMMP/LibVapmPMMP
         version: ^1.8.8
