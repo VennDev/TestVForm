@@ -22,6 +22,7 @@ final class JoinForm extends Form
     public function __construct(Player $player)
     {
         parent::__construct($player);
+        $this->setContent("Welcome to the server!");
     }
 
     #[VButton(
