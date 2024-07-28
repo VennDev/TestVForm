@@ -26,8 +26,8 @@ final class JoinForm extends Form
     }
 
     #[VButton(
-        text: "Test Button",
-        image: "https://example.com/image.png",
+        text: "Test Button //player",
+        image: "https://raw.githubusercontent.com/GabBiswajit/ImageLoader/1c841d8c0cb80bf4d1adb28a4860f7dd7ac123e5/icon.png",
         label: "Click me!"
     )]
     public function testButton(Player $player, mixed $data): void

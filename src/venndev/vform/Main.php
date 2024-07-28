@@ -12,14 +12,13 @@ use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
-use Throwable;
 use venndev\vform\forms\BreakForm;
 use venndev\vform\forms\JoinForm;
 use venndev\vform\forms\PlaceForm;
 use venndev\vform\forms\SneakingForm;
-use venndev\vformoopapi\attributes\custom\VInput;
 use venndev\vformoopapi\attributes\normal\VButton;
-use vennv\vapm\VapmPMMP;
+use venndev\vformoopapi\VFormLoader;
+use Throwable;
 
 final class Main extends PluginBase implements Listener
 {
@@ -32,7 +31,7 @@ final class Main extends PluginBase implements Listener
 
     public function onEnable(): void
     {
-        VapmPMMP::init($this);
+        VFormLoader::init($this);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
@@ -72,13 +71,29 @@ final class Main extends PluginBase implements Listener
 
         $sneakingForm = SneakingForm::getInstance($player);
 
-        // Add a simple button
-        $sneakingForm->addContent(new VButton(
-            text: "Test Button B",
-            image: "https://example.com/image.png"
-        ), function(Player $player, mixed $data): void {
-            $player->sendMessage("You clicked the test button B!");
-        });
+        // suppose you have data config like this
+        $buttons = [
+            [
+                "text" => "Test Button B",
+                "image" => "https://example.com/image.png",
+                "cmd" => "say Hello B"
+            ],
+            [
+                "text" => "Test Button C",
+                "image" => "https://example.com/image.png",
+                "cmd" => "say Hello C"
+            ]
+        ];
+
+        // add buttons for form available!
+        foreach ($buttons as $button) {
+            $sneakingForm->addContent(new VButton(
+                text: $button["text"],
+                image: $button["image"]
+            ), function(Player $player, mixed $data) use($button): void {
+                $player->sendMessage($button["cmd"]);
+            });
+        }
 
         $sneakingForm->sendForm();
     }
