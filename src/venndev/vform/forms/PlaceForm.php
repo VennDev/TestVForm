@@ -17,6 +17,7 @@ use venndev\vformoopapi\attributes\VForm;
 use venndev\vformoopapi\Form;
 use venndev\vformoopapi\utils\TypeForm;
 use vennv\vapm\Async;
+use vennv\vapm\Promise;
 
 #[VForm(
     title: "Place Form",
@@ -37,7 +38,7 @@ final class PlaceForm extends Form
 
                 // It is `Test DropDown` index
                 // If you have set 'label' index, you can use $this->setIndexContent('labelName', ["options" => $playersName]);
-                $this->setIndexContent(2, ["options" => $playersName]);
+                $this->setIndexContent(3, ["options" => $playersName]);
             }
         );
     }
@@ -55,6 +56,23 @@ final class PlaceForm extends Form
     {
         return new Async(function () use ($player, $data) {
             $player->sendMessage("Toggle Async: You have selected: " . ($data ? "true" : "false"));
+        });
+    }
+
+    /**
+     * @throws Throwable
+     *
+     * This is an example of how to use Promise
+     */
+    #[VToggle(
+        text: "Test StepSlider Promise",
+        default: true
+    )]
+    public function togglePromise(Player $player, mixed $data): Promise
+    {
+        return new Promise(function ($resolve) use ($player, $data) {
+            $player->sendMessage("Toggle Promise: You have selected: " . ($data ? "true" : "false"));
+            $resolve();
         });
     }
 
