@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace venndev\vform\forms;
 
 use pocketmine\player\Player;
+use Throwable;
 use venndev\vform\Main;
 use venndev\vformoopapi\attributes\custom\VDropDown;
 use venndev\vformoopapi\attributes\custom\VInput;
@@ -15,6 +16,7 @@ use venndev\vformoopapi\attributes\custom\VToggle;
 use venndev\vformoopapi\attributes\VForm;
 use venndev\vformoopapi\Form;
 use venndev\vformoopapi\utils\TypeForm;
+use vennv\vapm\Async;
 
 #[VForm(
     title: "Place Form",
@@ -35,9 +37,25 @@ final class PlaceForm extends Form
 
                 // It is `Test DropDown` index
                 // If you have set 'label' index, you can use $this->setIndexContent('labelName', ["options" => $playersName]);
-                $this->setIndexContent(1, ["options" => $playersName]);
+                $this->setIndexContent(2, ["options" => $playersName]);
             }
         );
+    }
+
+    /**
+     * @throws Throwable
+     *
+     * This is an example of how to use Async
+     */
+    #[VToggle(
+        text: "Test StepSlider Async",
+        default: true
+    )]
+    public function toggleAsync(Player $player, mixed $data): Async
+    {
+        return new Async(function () use ($player, $data) {
+            $player->sendMessage("Toggle Async: You have selected: " . ($data ? "true" : "false"));
+        });
     }
 
     #[VInput(

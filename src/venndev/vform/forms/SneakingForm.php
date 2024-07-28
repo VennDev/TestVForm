@@ -8,7 +8,6 @@ use pocketmine\player\Player;
 use venndev\vformoopapi\attributes\normal\VButton;
 use venndev\vformoopapi\attributes\VForm;
 use venndev\vformoopapi\Form;
-use venndev\vformoopapi\utils\ImageType;
 use venndev\vformoopapi\utils\TypeForm;
 
 #[VForm(
