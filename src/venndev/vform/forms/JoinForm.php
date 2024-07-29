@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace venndev\vform\forms;
 
 use pocketmine\player\Player;
+use venndev\vform\results\GetString;
 use venndev\vformoopapi\attributes\normal\VButton;
 use venndev\vformoopapi\attributes\VForm;
 use venndev\vformoopapi\Form;
@@ -18,6 +19,8 @@ use venndev\vformoopapi\utils\TypeForm;
 final class JoinForm extends Form
 {
 
+    public static string $aa = "aa";
+
     public function __construct(Player $player)
     {
         parent::__construct($player);
@@ -25,7 +28,7 @@ final class JoinForm extends Form
     }
 
     #[VButton(
-        text: "Test Button //player",
+        text: new GetString("Test Button //player"),
         image: "https://raw.githubusercontent.com/GabBiswajit/ImageLoader/1c841d8c0cb80bf4d1adb28a4860f7dd7ac123e5/icon.png",
         label: "Click me!"
     )]
