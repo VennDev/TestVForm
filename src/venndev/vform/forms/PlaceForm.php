@@ -17,6 +17,7 @@ use venndev\vformoopapi\attributes\VForm;
 use venndev\vformoopapi\Form;
 use venndev\vformoopapi\utils\TypeForm;
 use vennv\vapm\Async;
+use vennv\vapm\FiberManager;
 use vennv\vapm\Promise;
 
 #[VForm(
@@ -55,7 +56,11 @@ final class PlaceForm extends Form
     public function toggleAsync(Player $player, mixed $data): Async
     {
         return new Async(function () use ($player, $data) {
-            $player->sendMessage("Toggle Async: You have selected: " . ($data ? "true" : "false"));
+            Async::await(new Promise(function ($resolve) use ($player, $data) {
+                FiberManager::wait();
+                $player->sendMessage("Toggle Async: You have selected: " . ($data ? "true" : "false"));
+                $resolve();
+            }));
         });
     }
 
