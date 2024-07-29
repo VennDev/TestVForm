@@ -7,6 +7,7 @@ namespace venndev\vform\forms;
 use pocketmine\player\Player;
 use Throwable;
 use venndev\vform\Main;
+use venndev\vform\results\GetArray;
 use venndev\vformoopapi\attributes\custom\VDropDown;
 use venndev\vformoopapi\attributes\custom\VInput;
 use venndev\vformoopapi\attributes\custom\VLabel;
@@ -120,7 +121,7 @@ final class PlaceForm extends Form
 
     #[VStepSlider(
         text: "Test StepSlider",
-        steps: ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"]
+        steps: new GetArray(["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"])
     )]
     public function stepSlider(Player $player, mixed $data): void
     {
