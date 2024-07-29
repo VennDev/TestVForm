@@ -8,6 +8,7 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerJumpEvent;
 use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
@@ -17,6 +18,8 @@ use venndev\vform\forms\JoinForm;
 use venndev\vform\forms\PlaceForm;
 use venndev\vform\forms\SneakingForm;
 use venndev\vformoopapi\attributes\normal\VButton;
+use venndev\vformoopapi\FormSample;
+use venndev\vformoopapi\utils\TypeForm;
 use venndev\vformoopapi\VFormLoader;
 use Throwable;
 
@@ -70,6 +73,8 @@ final class Main extends PluginBase implements Listener
         $player = $event->getPlayer();
 
         $sneakingForm = SneakingForm::getInstance($player);
+        $sneakingForm->setTitle("Sneaking Form Edited!");
+        $sneakingForm->setContent("This is a sneaking form has Edited!");
 
         // suppose you have data config like this
         $buttons = [
@@ -95,7 +100,35 @@ final class Main extends PluginBase implements Listener
             });
         }
 
+        $sneakingForm->setFormClose(function(Player $player): void {
+            $player->sendMessage("You closed the sneaking form!");
+        });
+
+        $sneakingForm->setFormSubmit(function(Player $player, mixed $data): void {
+            $player->sendMessage("You submitted the sneaking form!");
+        });
+
         $sneakingForm->sendForm();
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function onJump(PlayerJumpEvent $event): void
+    {
+        $player = $event->getPlayer();
+        $formJump = FormSample::getInstance($player);
+
+        // Default form type is TypeForm::MODAL, if you want to change it, you can use setType() method
+        $formJump->setTitle("Jump Form");
+        $formJump->setContent("You are jumping!");
+        $formJump->addContent(new VButton(
+            text: "Jump Button",
+            image: "https://example.com/image.png"
+        ), function(Player $player, mixed $data): void {
+            $player->sendMessage("You clicked the jump button!");
+        });
+        $formJump->sendForm();
     }
 
 }

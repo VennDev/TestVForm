@@ -131,9 +131,15 @@ final class PlaceForm extends Form
         $player->sendMessage("Toggle: You have selected: " . ($data ? "true" : "false"));
     }
 
-    public function onClose(Player $player): void
+    protected function onClose(Player $player): void
     {
         $player->sendMessage("You have closed the form");
+    }
+
+    // This method is called when the form is submitted
+    protected function onCompletion(Player $player, mixed $data): void
+    {
+        // TODO: Implement onCompletion() method.
     }
 
 }

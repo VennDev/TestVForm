@@ -33,9 +33,4 @@ final class SneakingForm extends Form
         $player->sendMessage("You clicked the test button A!");
     }
 
-    public function onClose(Player $player): void
-    {
-        $player->sendMessage("You have closed the form");
-    }
-
 }

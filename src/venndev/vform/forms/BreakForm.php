@@ -13,7 +13,7 @@ use venndev\vformoopapi\utils\TypeForm;
 #[VForm(
     title: "Break Form",
     type: TypeForm::MODAL_FORM,
-    content: ""
+    content: "A test form to show how to use the VForm API"
 )]
 final class BreakForm extends Form
 {
@@ -39,9 +39,15 @@ final class BreakForm extends Form
         $player->sendMessage("You clicked the test button B!");
     }
 
-    public function onClose(Player $player): void
+    protected function onClose(Player $player): void
     {
         $player->sendMessage("You have closed the form");
+    }
+
+    // This method is called when the form is submitted
+    protected function onCompletion(Player $player, mixed $data): void
+    {
+        // TODO: Implement onCompletion() method.
     }
 
 }

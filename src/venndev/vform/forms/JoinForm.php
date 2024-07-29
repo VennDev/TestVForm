@@ -26,7 +26,7 @@ final class JoinForm extends Form
 
     #[VButton(
         text: "Test Button //player",
-        image: "https://i.pinimg.com/736x/ee/28/3a/ee283a1348a90c6db74c2937493fce74.jpg",
+        image: "https://raw.githubusercontent.com/GabBiswajit/ImageLoader/1c841d8c0cb80bf4d1adb28a4860f7dd7ac123e5/icon.png",
         label: "Click me!"
     )]
     public function testButton(Player $player, mixed $data): void
@@ -34,9 +34,15 @@ final class JoinForm extends Form
         $player->sendMessage("You clicked the test button!");
     }
 
-    public function onClose(Player $player): void
+    protected function onClose(Player $player): void
     {
         $player->sendMessage("You have closed the form");
+    }
+
+    // This method is called when the form is submitted
+    protected function onCompletion(Player $player, mixed $data): void
+    {
+        // TODO: Implement onCompletion() method.
     }
 
 }
